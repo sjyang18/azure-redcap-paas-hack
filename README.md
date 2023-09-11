@@ -81,7 +81,7 @@ It will take a few minutes to execute the SQL.
 
 Once you regain access to the console, you can navigate to the root of your app service and confirm everything shows green on the REDCap Configuration Check page - with the exception of CronJob status which you may have to manually invoke. If anything displays on that page in red or yellow, it is recommended that you perform a "Restart" of the Azure "App Service". This needs to be done due to the fact that some necessary server environment settings get changed after the initial deployment, but restarting the App Service will load the service with the intended settings. Everything should be fine after that initial restart though.
 
-### Note about REDCap "Easy Upgade"
+### Note about REDCap "Easy Upgrade"
 
 The "Easy Upgrade" feature in REDCap 8.11.0 and later is currently _not_ supported when deploying a REDCap instance on Azure. Support for "Easy Upgrade" on Azure is expected to come at a later time in a future REDCap release.
 
