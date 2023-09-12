@@ -16,6 +16,11 @@ param peSubnetId string
 param privateDnsZoneName string
 param virtualNetworkId string
 param integrationSubnetId string
+@secure()
+param redcapZipUrl string
+param redcapCommunityUsername string
+@secure()
+param redcapCommunityPassword string
 
 @secure()
 param dbPassword string
@@ -47,6 +52,9 @@ module appService 'webapp.bicep' = {
     peSubnetId: peSubnetId
     privateDnsZoneId: privateDns.outputs.privateDnsId
     integrationSubnetId: integrationSubnetId
+    redcapZipUrl: redcapZipUrl
+    redcapCommunityUsername: redcapCommunityUsername
+    redcapCommunityPassword: redcapCommunityPassword
   }
 }
 

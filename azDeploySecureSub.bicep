@@ -26,6 +26,16 @@ param identityObjectId string
 
 @description('The address space for the virtual network. Subnets will be carved out. Minimum IPv4 size: /24')
 param vnetAddressSpace string
+@description('recap zip file url')
+@secure()
+param redcapZipUrl string
+
+@description('REDCap Community site username for downloading the REDCap zip file.')
+param redcapCommunityUsername string
+
+@description('REDCap Community site password for downloading the REDCap zip file.')
+@secure()
+param redcapCommunityPassword string
 
 var sequenceFormatted = format('{0:00}', sequence)
 var rgNamingStructure = replace(replace(replace(replace(replace(namingConvention, '{rtype}', 'rg'), '{workloadName}', '${workloadName}-{rgName}'), '{loc}', location), '{seq}', sequenceFormatted), '{env}', environment)
@@ -302,7 +312,9 @@ module webAppModule './modules/webapp/main.bicep' = {
     dbName: mySqlModule.outputs.databaseName
     dbPassword: kvSecretReferencesModule.outputs.keyVaultRefs[1]
     dbUserName: mySqlModule.outputs.sqlAdmin
-
+    redcapZipUrl: redcapZipUrl
+    redcapCommunityUsername: redcapCommunityUsername
+    redcapCommunityPassword: redcapCommunityPassword
     // Enable VNet integration
     integrationSubnetId: virtualNetworkModule.outputs.subnets.IntegrationSubnet.id
   }
