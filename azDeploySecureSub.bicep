@@ -159,6 +159,14 @@ var secrets = [
     name: 'dbName'
     value: mySqlModule.outputs.databaseName
   }
+  {
+    name: 'redcapCommunityUsername'
+    value: redcapCommunityUsername
+  }
+  {
+    name: 'redcapCommunityPassword'
+    value: redcapCommunityPassword
+  }
 ]
 
 var workloads = [
@@ -313,8 +321,8 @@ module webAppModule './modules/webapp/main.bicep' = {
     dbPassword: kvSecretReferencesModule.outputs.keyVaultRefs[1]
     dbUserName: mySqlModule.outputs.sqlAdmin
     redcapZipUrl: redcapZipUrl
-    redcapCommunityUsername: redcapCommunityUsername
-    redcapCommunityPassword: redcapCommunityPassword
+    redcapCommunityUsername: kvSecretReferencesModule.outputs.keyVaultRefs[4]
+    redcapCommunityPassword: kvSecretReferencesModule.outputs.keyVaultRefs[5]
     // Enable VNet integration
     integrationSubnetId: virtualNetworkModule.outputs.subnets.IntegrationSubnet.id
   }
