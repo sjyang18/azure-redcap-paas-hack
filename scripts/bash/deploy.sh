@@ -103,7 +103,7 @@ echo "Configuring REDCap recommended settings" >> /home/site/log-$stamp.txt
 sed -i "s|SMTP[[:space:]]*= ''|SMTP = '$APPSETTING_smtpFQDN'|" /home/site/repository/Files/settings.ini
 sed -i "s|smtp_port[[:space:]]*= ''|smtp_port = '$APPSETTING_smtpPort'|" /home/site/repository/Files/settings.ini
 sed -i "s|sendmail_from[[:space:]]*= ''|sendmail_from = '$APPSETTING_fromEmailAddress'|" /home/site/repository/Files/settings.ini
-sed -i "s|sendmail_path[[:space:]]*= ''|sendmail_path = '/usr/sbin/sendmail -t -i:'|" /home/site/repository/Files/settings.ini
+sed -i "s|sendmail_path[[:space:]]*= ''|sendmail_path = '/usr/sbin/sendmail -t -i'|" /home/site/repository/Files/settings.ini
 cp /home/site/repository/Files/settings.ini /home/site/redcap.ini
 
 ####################################################################################
