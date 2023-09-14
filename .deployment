@@ -1,3 +1,3 @@
 ﻿[config]
-command = bash deploy.sh
+command = sudo bash scripts/bash/deploy.sh
 SCM_COMMAND_IDLE_TIMEOUT=600
