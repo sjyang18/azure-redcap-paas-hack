@@ -10,7 +10,8 @@
 # Timestamp for log file
 #
 ####################################################################################
-
+user=$(whoami)
+echo "Running with $user"
 stamp=$(date +%Y-%m-%d-%H-%M)
 
 ####################################################################################
@@ -20,6 +21,7 @@ stamp=$(date +%Y-%m-%d-%H-%M)
 ####################################################################################
 
 echo "Configuring mysqli extension" >> /home/site/log-$stamp.txt
+echo "Running with $user" >> /home/site/log-$stamp.txt
 cd /home/site
 echo "extension=/usr/local/lib/php/extensions/no-debug-non-zts-20190902/mysqlnd_azure.so
 extension=/usr/local/lib/php/extensions/no-debug-non-zts-20190902/mysqli.so" >> extensions.ini
