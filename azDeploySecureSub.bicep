@@ -36,6 +36,10 @@ param redcapCommunityUsername string
 @description('REDCap Community site password for downloading the REDCap zip file.')
 @secure()
 param redcapCommunityPassword string
+@description('Github Repo URL where build scripts are downloaded from')
+param scmRepoUrl string = 'https://github.com/microsoft/azure-redcap-paas'
+@description('Github Repo Branch where build scripts are downloaded from')
+param scmRepoBranch string = 'main'
 
 var sequenceFormatted = format('{0:00}', sequence)
 var rgNamingStructure = replace(replace(replace(replace(replace(namingConvention, '{rtype}', 'rg'), '{workloadName}', '${workloadName}-{rgName}'), '{loc}', location), '{seq}', sequenceFormatted), '{env}', environment)
@@ -325,6 +329,8 @@ module webAppModule './modules/webapp/main.bicep' = {
     redcapCommunityPassword: kvSecretReferencesModule.outputs.keyVaultRefs[5]
     // Enable VNet integration
     integrationSubnetId: virtualNetworkModule.outputs.subnets.IntegrationSubnet.id
+    scmRepoUrl: scmRepoUrl
+    scmRepoBranch: scmRepoBranch
   }
 }
 

@@ -26,6 +26,8 @@ param redcapZipUrl string
 param redcapCommunityUsername string
 @secure()
 param redcapCommunityPassword string
+param scmRepoUrl string
+param scmRepoBranch string = 'main'
 
 resource appSrvcPlan 'Microsoft.Web/serverfarms@2022-03-01' = {
   name: appServicePlan
@@ -111,6 +113,10 @@ resource webApp 'Microsoft.Web/sites@2022-03-01' = {
           name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
           value: appInsights.properties.ConnectionString
         }
+        {
+          name: 'SCM_DO_BUILD_DURING_DEPLOYMENT'
+          value: '1'
+        } 
       ]
     }
   }
@@ -131,6 +137,20 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
     // TODO: This deploys Classic App Insights; must use Workspace-based now
     //WorkspaceResourceId: logAnalyticsWorkspaceId
     Flow_Type: 'Bluefield'
+  }
+}
+
+resource webSiteName_web 'Microsoft.Web/sites/sourcecontrols@2015-08-01' = {
+  parent: webApp
+  name: 'web'
+  location: location
+  tags: {
+    displayName: 'CodeDeploy'
+  }
+  properties: {
+    repoUrl: scmRepoUrl
+    branch: scmRepoBranch
+    isManualIntegration: true
   }
 }
 

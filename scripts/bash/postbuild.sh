@@ -51,4 +51,4 @@ python3 scraper.py
 #
 ####################################################################################
 
-cp /home/site/repository/install.sh /home/install.sh
+cp /home/site/repository/scripts/bash/install.sh /home/install.sh

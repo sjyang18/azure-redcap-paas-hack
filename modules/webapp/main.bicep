@@ -16,6 +16,8 @@ param peSubnetId string
 param privateDnsZoneName string
 param virtualNetworkId string
 param integrationSubnetId string
+param scmRepoUrl string
+param scmRepoBranch string
 @secure()
 param redcapZipUrl string
 @secure()
@@ -56,6 +58,8 @@ module appService 'webapp.bicep' = {
     redcapZipUrl: redcapZipUrl
     redcapCommunityUsername: redcapCommunityUsername
     redcapCommunityPassword: redcapCommunityPassword
+    scmRepoUrl: scmRepoUrl
+    scmRepoBranch: scmRepoBranch
   }
 }
 
