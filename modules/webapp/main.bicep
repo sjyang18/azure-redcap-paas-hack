@@ -18,6 +18,7 @@ param virtualNetworkId string
 param integrationSubnetId string
 @secure()
 param redcapZipUrl string
+@secure()
 param redcapCommunityUsername string
 @secure()
 param redcapCommunityPassword string

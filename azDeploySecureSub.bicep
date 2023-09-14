@@ -28,9 +28,9 @@ param identityObjectId string
 param vnetAddressSpace string
 @description('recap zip file url')
 @secure()
-param redcapZipUrl string
-
+param redcapZipUrl string = ''
 @description('REDCap Community site username for downloading the REDCap zip file.')
+@secure()
 param redcapCommunityUsername string
 
 @description('REDCap Community site password for downloading the REDCap zip file.')
