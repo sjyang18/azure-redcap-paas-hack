@@ -22,12 +22,15 @@ param appInsights_connectionString string
 @secure()
 param appInsights_instrumentationKey string
 
+param scmRepoUrl string
+param scmRepoBranch string
 @secure()
 param redcapZipUrl string
 @secure()
 param redcapCommunityUsername string
 @secure()
 param redcapCommunityPassword string
+param preRequsitesCommand string = 'apt-get install unzip -y && apt-get install -y python3 python3-pip'
 
 
 @secure()
@@ -68,6 +71,9 @@ module appService 'webapp.bicep' = {
     redcapCommunityUsername: redcapCommunityUsername
     redcapCommunityPassword: redcapCommunityPassword
 
+    scmRepoUrl: scmRepoUrl
+    scmRepoBranch: scmRepoBranch
+    preRequsitesCommand: preRequsitesCommand
   }
 }
 

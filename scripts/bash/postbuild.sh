@@ -13,17 +13,19 @@ echo "hello from postbuild.sh"
 #
 ####################################################################################
 
-apt-get install -y python3 python3-pip
+
 
 ####################################################################################
 #
 # Install Python3 modules used to scrape REDCap installation SQL script
 #
 ####################################################################################
-
+user=$(whoami)
+echo "Running with $user"
+curl -sS https://bootstrap.pypa.io/get-pip.py | python3
 python3 -m pip install beautifulsoup4
 python3 -m pip install requests
-
+echo "completed installing python modules with $?"
 ####################################################################################
 #
 # Scrape the install.php page for SQL commands to execute
@@ -44,11 +46,12 @@ with open("/home/install.sql", "w") as out:
       1+1
 EOF
 python3 scraper.py
-
+echo "completed running scraper.py with $?"
 ####################################################################################
 #
 # Copy the install.sh file to the /home directory
 #
 ####################################################################################
 
-cp /home/site/repository/install.sh /home/install.sh
+cp /home/site/repository/scripts/bash/install.sh /home/install.sh
+echo "completed copying install.sh with $?"
