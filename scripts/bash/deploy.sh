@@ -10,8 +10,6 @@
 # Timestamp for log file
 #
 ####################################################################################
-user=$(whoami)
-echo "Running with $user"
 stamp=$(date +%Y-%m-%d-%H-%M)
 
 ####################################################################################
@@ -21,7 +19,6 @@ stamp=$(date +%Y-%m-%d-%H-%M)
 ####################################################################################
 
 echo "Configuring mysqli extension" >> /home/site/log-$stamp.txt
-echo "Running with $user" >> /home/site/log-$stamp.txt
 cd /home/site
 echo "extension=/usr/local/lib/php/extensions/no-debug-non-zts-20190902/mysqlnd_azure.so
 extension=/usr/local/lib/php/extensions/no-debug-non-zts-20190902/mysqli.so" >> extensions.ini
@@ -103,7 +100,7 @@ sed -i "s/$salt = '';/$salt = '$(echo $RANDOM | md5sum | head -c 20; echo;)';/" 
 
 echo "Configuring REDCap recommended settings" >> /home/site/log-$stamp.txt
 sed -i "s|SMTP[[:space:]]*= ''|SMTP = '$APPSETTING_smtpFQDN'|" /home/site/repository/Files/settings.ini
-sed -i "s|smtp_port[[:space:]]*= ''|smtp_port = '$APPSETTING_smtpPort'|" /home/site/repository/Files/settings.ini
+sed -i "s|smtp_port[[:space:]]*= |smtp_port = $APPSETTING_smtpPort|" /home/site/repository/Files/settings.ini
 sed -i "s|sendmail_from[[:space:]]*= ''|sendmail_from = '$APPSETTING_fromEmailAddress'|" /home/site/repository/Files/settings.ini
 sed -i "s|sendmail_path[[:space:]]*= ''|sendmail_path = '/usr/sbin/sendmail -t -i'|" /home/site/repository/Files/settings.ini
 cp /home/site/repository/Files/settings.ini /home/site/redcap.ini
@@ -134,4 +131,3 @@ cp /home/site/repository/scripts/bash/postbuild.sh /home/site/deployments/tools/
 ####################################################################################
 
 cp /home/site/repository/scripts/bash/startup.sh /home/startup.sh
-echo "Reached the end of deploy.sh with $?"

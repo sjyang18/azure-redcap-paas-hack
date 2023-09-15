@@ -27,7 +27,7 @@ param redcapCommunityUsername string
 param redcapCommunityPassword string
 param scmRepoUrl string
 param scmRepoBranch string = 'main'
-param preRequsitesCommand string = 'apt-get install unzip -y && apt-get install -y python3 python3-pip'
+param preRequsitesCommand string
 
 
 param appInsights_connectionString string
@@ -134,7 +134,7 @@ resource webApp 'Microsoft.Web/sites@2022-03-01' = {
 }
 
 
-resource webSiteName_web 'Microsoft.Web/sites/sourcecontrols@2015-08-01' = {
+resource webSiteName_web 'Microsoft.Web/sites/sourcecontrols@2022-09-01' = {
   parent: webApp
   name: 'web'
   location: location

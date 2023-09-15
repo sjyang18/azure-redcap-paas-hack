@@ -30,7 +30,7 @@ param redcapZipUrl string
 param redcapCommunityUsername string
 @secure()
 param redcapCommunityPassword string
-param preRequsitesCommand string = 'apt-get install unzip -y && apt-get install -y python3 python3-pip'
+param preRequsitesCommand string
 
 
 @secure()
