@@ -68,7 +68,7 @@ else
   wget -q -O /tmp/redcap.zip $APPSETTING_redcapAppZip
 fi
 
-apt-get install unzip -y
+
 unzip -oq /tmp/redcap.zip -d /tmp/wwwroot 
 mv /tmp/wwwroot/redcap/* /home/site/wwwroot/
 rm -Rf /tmp/wwwroot

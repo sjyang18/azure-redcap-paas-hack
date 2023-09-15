@@ -28,6 +28,7 @@ param redcapCommunityUsername string
 param redcapCommunityPassword string
 param scmRepoUrl string
 param scmRepoBranch string = 'main'
+param preRequsiteCommand string = 'apt-get install unzip -y && apt-get install -y python3 python3-pip'
 
 resource appSrvcPlan 'Microsoft.Web/serverfarms@2022-03-01' = {
   name: appServicePlan
@@ -60,6 +61,7 @@ resource webApp 'Microsoft.Web/sites@2022-03-01' = {
       linuxFxVersion: linuxFxVersion
       minTlsVersion: '1.2'
       ftpsState: 'FtpsOnly'
+      appCommandLine: preRequsiteCommand
       appSettings: [
         {
           name: 'redcapAppZip'
