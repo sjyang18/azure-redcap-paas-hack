@@ -134,3 +134,4 @@ cp /home/site/repository/scripts/bash/postbuild.sh /home/site/deployments/tools/
 ####################################################################################
 
 cp /home/site/repository/scripts/bash/startup.sh /home/startup.sh
+echo "Reached the end of deploy.sh with $?"
