@@ -1,4 +1,4 @@
-## deploy azDeploySecureSub.bicep
+## deploy main.bicep
 
 name: Azure REDCap Deployment
 
@@ -39,14 +39,14 @@ jobs:
               with:
                 azcliversion: $azCliVersion
                 inlineScript: |
-                    az deployment sub validate --location westeurope --template-file ./azDeploySecureSub.bicep
+                    az deployment sub validate --location westeurope --template-file ./main.bicep
             
             - uses: azure/cli@v1
               name: Azure CLI
               with:
                 azcliversion: $azCliVersion
                 inlineScript: |
-                    az deployment sub create --location westeurope --template-file ./azDeploySecureSub.bicep --what-if --verbose
+                    az deployment sub create --location westeurope --template-file ./main.bicep --what-if --verbose
     
     # Deploy the resources
     deployResources:
@@ -73,4 +73,4 @@ jobs:
               with:
                 azcliversion: ${{ env.azCliVersion }}
                 inlineScript: |
-                    az deployment sub create --location westeurope --template-file ./azDeploySecureSub.bicep --verbose
+                    az deployment sub create --location westeurope --template-file ./main.bicep --verbose

@@ -1,4 +1,4 @@
-using './azDeploySecureSub.bicep'
+using './main.bicep'
 
 // These parameters might have acceptable defaults.
 param location = 'eastus'
